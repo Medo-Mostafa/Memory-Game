@@ -66,9 +66,11 @@ function isEqual(box) {
       addflippedClass(twoBoxes);
       twoBoxes.forEach((box) => {
         box.classList.add("matched");
+        document.querySelector("#success").play();
       });
       twoBoxes = [];
     } else {
+      document.querySelector("#fail").play();
       removeflippedClass(twoBoxes);
       twoBoxes = [];
       tries.textContent++;
