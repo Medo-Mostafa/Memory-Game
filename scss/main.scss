@@ -1,0 +1,106 @@
+// Variables
+@import "./abstracts/variables";
+// Mixins
+@import "./abstracts/mixins";
+// Reset
+@import "./core/reset";
+// Fonts
+@import "./fonts/fonts";
+// Typography
+@import "./core/typography";
+// Vendors
+@import "./vendors/bootstrap";
+
+section {
+  .container {
+    .control-buttons {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      background-color: rgba(3, 169, 244, 0.9);
+      span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f44336;
+        color: #fff;
+        padding: 15px 25px;
+        font-size: 4vw;
+        @include breakpoints(large) {
+          font-size: 2vw;
+        }
+        text-align: center;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+    .info-container {
+      background-color: #f6f6f6;
+      padding: 20px;
+      font-size: $medium-heading;
+      overflow: hidden;
+      border: 2px solid #2196f3;
+      display: flex;
+      justify-content: space-between;
+      @include breakpoints(425px) {
+        padding: 10px;
+        font-size: $small-heading - 2;
+      }
+    }
+    .memory-game-blocks {
+      padding: 3vw;
+      display: grid;
+      gap: 2vw;
+      grid-template-columns: repeat(auto-fill, minmax(13vw, 1fr));
+      @include breakpoints(large) {
+        padding: 1vw;
+        gap: 1vw;
+        grid-template-columns: repeat(auto-fill, minmax(14vw, 1fr));
+      }
+      .game-block {
+        @include flex-box;
+        justify-content: center;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
+        height: 13vw;
+        @include breakpoints(large) {
+          height: 10vw;
+        }
+        @include transition($short-transition, null);
+        .face {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          width: 100%;
+          height: 100%;
+          @include backface;
+          position: absolute;
+        }
+        .front {
+          background-color: #333;
+          font-size: 8vw;
+        }
+        .back {
+          background-color: #607d8b;
+          transform: rotateY(180deg);
+          img {
+            width: 10vw;
+            @include breakpoints(large) {
+              width: 7vw;
+            }
+          }
+        }
+        &.flipped {
+          @include transform(rotateY(-180deg));
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}
