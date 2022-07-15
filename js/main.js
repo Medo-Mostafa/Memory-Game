@@ -63,10 +63,10 @@ function isEqual(box) {
   twoBoxes.push(box);
   if (twoBoxes.length == 2) {
     if (twoBoxes[0].dataset.technology == twoBoxes[1].dataset.technology) {
+      document.getElementById("success").play();
       addflippedClass(twoBoxes);
       twoBoxes.forEach((box) => {
         box.classList.add("matched");
-        document.getElementById("success").play();
       });
       twoBoxes = [];
     } else {
